@@ -12,7 +12,7 @@
 //      raghav
 //      external
 //      cluster-1 
-//      [ZONE]. //THIS NEEDS TO CHANGE FOR THE AWS VERSION
+//      us-central1-c. //THIS NEEDS TO CHANGE FOR THE AWS VERSION
 //      default
 //      the following values can be found in the yaml:
 //      demo-ui-deployment
@@ -22,8 +22,8 @@
 pipeline {
     agent any 
    environment {
-        registryCredential = 'docker'
-        imageName = 'beachcoder/external'
+        registryCredential = 'raghav'
+        imageName = 'rpnayak80/external_events'
         dockerImage = ''
         }
     stages {
@@ -75,7 +75,7 @@ pipeline {
             steps {
                 sh "rm -rf ${WORKSPACE}/kube/"
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials cluster-1 --zone [ZONE] --project roidtc-july2022-user203'
+                sh 'gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project roidtc-july2022-user203'
             }
         }     
          stage('update k8s') {
