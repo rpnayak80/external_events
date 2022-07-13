@@ -1,0 +1,27 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: demo-ui-deployment
+spec: 
+  selector:
+    matchLabels:
+      app: demo-ui
+  replicas: 3 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: demo-ui
+    spec:
+      containers:
+      - name: demo-ui-container
+        image: beachcoder/external:7
+        env: 
+        - name: SERVER
+          value: "http://demo-service:8082"
+        - name: SERVICE_PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
+            
+        
+        
